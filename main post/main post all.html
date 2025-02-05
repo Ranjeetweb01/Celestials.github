@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Page with Animations</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #17153B; /* Dark Navy Blue */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 5, 26, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            min-height: 20px; /* Ensure minimum height */
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #8148fc, #fbf9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 1rem; /* Reduce gap for better fit */
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        .navbar-links a:hover {
+            color: #8257ff;
+        }
+
+        /* Section Styles */
+        section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding-top: 80px; /* To account for the fixed navbar */
+        }
+
+        section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Page 4 Styles */
+        .container-page4 {
+            background-color: #2E236C; /* Deep Purple */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .image-container a {
+            width: 30%;
+            display: block;
+            text-decoration: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .image-container a:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Page 5 & Page 6 Styles */
+        .container-page5, .container-page6 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #2E236C; /* Deep Purple */
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .image-box img {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .image-box:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Page 9 & Page 10 Styles */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #2E236C; /* Deep Purple */
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .gallery a {
+            display: block;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery img {
+            width: 300px;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer Section */
+        .footer {
+            background: rgba(10, 5, 26, 0.8); /* Transparent background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(130, 87, 255, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8257ff;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation Buttons Above Footer */
+        .button-container {
+            background-color: rgba(23, 21, 59, 0.9); /* Dark Navy Blue with transparency */
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px; /* Space above the footer */
+        }
+
+        .button-container button {
+            background: linear-gradient(45deg, #433D8B, #2E236C); /* Medium Purple to Deep Purple */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.5s ease, transform 0.3s ease;
+            font-size: 16px;
+        }
+
+        .button-container button:hover {
+            background: linear-gradient(45deg, #C8ACD6, #433D8B); /* Light Lavender to Medium Purple */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Celestials.</a>
+        
+    </nav>
+
+    <!-- Sections -->
+    <section id="page4" class="active">
+        <div class="container-page4">
+            <div class="image-container">
+                <a href="https://example.com/link1" target="_blank">
+                    <img src="R:\NEW WEBSITE PROJECT\main website code\page 4\01 copy 2.jpg" alt="Image 1">
+                </a>
+                <a href="https://example.com/link2" target="_blank">
+                    <img src="R:\NEW WEBSITE PROJECT\main website code\page 4\creative_ad.jpg" alt="Image 2">
+                </a>
+                <a href="https://example.com/link3" target="_blank">
+                    <img src="R:\NEW WEBSITE PROJECT\main website code\page 4\size[1] 2.jpg" alt="Image 3">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Sections (Page 5, Page 6, Page 9, Page 10) -->
+     <section id="page5">
+        <div class="container-page5">
+            <a href="#airdrop-coming-soon" class="image-box">
+                <img src="img%2051.jpg" alt="Play 2 Airdrop Coming Soon">
+                <div class="overlay"></div>
+            </a>
+            <a href="#10-million-kwars" class="image-box">
+                <img src="img%2052.jpg" alt="10 Million KWARS Up For Grabs">
+                <div class="overlay"></div>
+            </a>
+            <a href="#airdrop-live" class="image-box">
+                <img src="img%2053.jpg" alt="Play 2 Airdrop Now Live">
+                <div class="overlay"></div>
+            </a>
+            <a href="#queen-of-fireballs" class="image-box">
+                <img src="img%2054.jpg" alt="Queen of Fireballs">
+                <div class="overlay"></div>
+            </a>
+        </div>
+    </section>
+
+    <section id="page6">
+        <div class="container-page6">
+            <a href="#airdrop-coming-soon" class="image-box">
+                <img src="img%2061.jpg" alt="Play 2 Airdrop Coming Soon">
+                <div class="overlay"></div>
+            </a>
+            <a href="#10-million-kwars" class="image-box">
+                <img src="img%2062.jpg" alt="10 Million KWARS Up For Grabs">
+                <div class="overlay"></div>
+            </a>
+            <a href="#airdrop-live" class="image-box">
+                <img src="img%2063.jpg" alt="Play 2 Airdrop Now Live">
+                <div class="overlay"></div>
+            </a>
+            <a href="#queen-of-fireballs" class="image-box">
+                <img src="img%2064.jpg" alt="Queen of Fireballs">
+                <div class="overlay"></div>
+            </a>
+        </div>
+    </section>
+
+    <section id="page9">
+        <div class="gallery">
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2091.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2092.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2093.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2094.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2095.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2096.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2097.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2098.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%2099.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%20910.jpg" alt="Page 9">
+            </a>
+        </div>
+    </section>
+
+    <section id="page10">
+        <div class="gallery">
+            <a href="/mnt/data/page 9.png" target="_blank">
+                <img src="img%20101.jpg" alt="Page 9">
+            </a>
+            <a href="/mnt/data/page 10.png" target="_blank">
+                <img src="img%20102.jpg" alt="Page 10">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20103.jpg" alt="Page 11">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20104.jpg" alt="Page 11">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20105.jpg" alt="Page 11">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20106.jpg" alt="Page 11">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20107.jpg" alt="Page 11">
+            </a>
+            <a href="/mnt/data/page 11.png" target="_blank">
+                <img src="img%20108.jpg" alt="Page 11">
+            </a>
+        </div>
+    </section>
+    <!-- ... -->
+
+    <!-- Buttons Above Footer -->
+    <div class="button-container">
+        <button onclick="showSection('page4')">1</button>
+        <button onclick="showSection('page5')">2</button>
+        <button onclick="showSection('page6')">3</button>
+        <button onclick="showSection('page9')">4</button>
+        <button onclick="showSection('page10')">5</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="services.html">Post</a>
+            <a href="page 3/page 3 clientle.html">Our Clients</a>
+            <a href="page 12/page 12.html">About Us</a>
+        </div>
+        <p class="footer-text">&copy; 2023 Celestials. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
