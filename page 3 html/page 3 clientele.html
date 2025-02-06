@@ -97,6 +97,47 @@
                 padding: 1.5rem;
             }
         }
+              /* Footer Section */
+        .footer {
+            background: rgba(10, 5, 26, 0.8); /* Transparent background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            padding: 1rem; /* Reduced padding */
+            text-align: center;
+            border-top: 1px solid rgba(130, 87, 255, 0.2);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem; /* Reduced margin */
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8257ff;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 500px) {
+            .footer-links {
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -142,5 +183,16 @@
             </div>
         </div>
     </section>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="main post all.html">Post</a>
+            <a href="page 3 html/page 3 clientele.html">Our Clients</a>
+            <a href="page 12/page 12.html">About Us</a>
+            
+        </div>
+        <p class="footer-text">&copy; 2023 Celestials. All rights reserved.</p>
+    </footer>
 </body>
 </html>
