@@ -19,6 +19,8 @@
             color: white;
             min-height: 100vh;
             padding: 4rem 2rem;
+            position: relative; /* Ensure body is positioned relative for footer */
+            padding-bottom: 120px; /* Add padding to prevent footer overlap */
         }
 
         .clientele {
@@ -97,7 +99,8 @@
                 padding: 1.5rem;
             }
         }
-              /* Footer Section */
+
+        /* Footer Section */
         .footer {
             background: rgba(10, 5, 26, 0.8); /* Transparent background */
             backdrop-filter: blur(10px); /* Frosted glass effect */
@@ -105,8 +108,9 @@
             text-align: center;
             border-top: 1px solid rgba(130, 87, 255, 0.2);
             width: 100%;
-            position: absolute;
-            bottom: 0;
+            position: absolute; /* Changed to absolute */
+            bottom: 0; /* Stick to the bottom */
+            left: 0; /* Align to the left */
         }
 
         .footer-links {
@@ -146,19 +150,19 @@
         <div class="clients-grid">
             <!-- Replace src with your actual logo paths -->
             <div class="client-card">
-                <img src=logo1.png alt="Client Logo" class="client-logo">
+                <img src="logo1.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo2.png alt="Client Logo" class="client-logo">
+                <img src="logo2.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo3.png alt="Client Logo" class="client-logo">
+                <img src="logo3.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo4.png alt="Client Logo" class="client-logo">
+                <img src="logo4.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo5.png alt="Client Logo" class="client-logo">
+                <img src="logo5.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
                 <img src="logo6.png" alt="Client Logo" class="client-logo">
@@ -167,13 +171,13 @@
                 <img src="logo7.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo8.png alt="Client Logo" class="client-logo">
+                <img src="logo8.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo8.png alt="Client Logo" class="client-logo">
+                <img src="logo8.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
-                <img src=logo10.png alt="Client Logo" class="client-logo">
+                <img src="logo10.png" alt="Client Logo" class="client-logo">
             </div>
             <div class="client-card">
                 <img src="logo11.png" alt="Client Logo" class="client-logo">
@@ -183,7 +187,8 @@
             </div>
         </div>
     </section>
-     <!-- Footer Section -->
+
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-links">
             <a href="https://ranjeetweb01.github.io/Celestials.github/">Home</a>
