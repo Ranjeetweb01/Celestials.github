@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celestials post</title>
+    <title>Celestials Post</title>
     <style>
         /* General Styles */
         body {
@@ -11,8 +11,10 @@
             background-color: #17153B; /* Dark Navy Blue */
             margin: 0;
             padding: 0;
-            text-align: center;
             color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
         }
 
         /* Navigation Bar */
@@ -59,12 +61,45 @@
             color: #8257ff;
         }
 
+        .navbar-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none; /* Hide the links on mobile */
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 5, 26, 0.9);
+                backdrop-filter: blur(10px);
+                padding: 1rem 2rem;
+            }
+
+            .navbar-links.active {
+                display: flex; /* Show the links when active */
+            }
+
+            .navbar-toggle {
+                display: block; /* Show the hamburger icon on mobile */
+            }
+        }
+
         /* Section Styles */
         section {
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
             padding-top: 80px; /* To account for the fixed navbar */
+            flex: 1; /* Allow sections to grow and push the footer down */
         }
 
         section.active {
@@ -173,10 +208,11 @@
             display: block;
             overflow: hidden;
             border-radius: 10px;
+            width: calc(33.333% - 20px); /* 3 columns with gap */
         }
 
         .gallery img {
-            width: 300px;
+            width: 100%;
             height: auto;
             transition: transform 0.3s ease-in-out;
             border-radius: 10px;
@@ -190,9 +226,10 @@
         .footer {
             background: rgba(10, 5, 26, 0.8); /* Transparent background */
             backdrop-filter: blur(10px); /* Frosted glass effect */
-            padding: 2rem;
+            padding: 1rem;
             text-align: center;
             border-top: 1px solid rgba(130, 87, 255, 0.2);
+            margin-top: auto; /* Push footer to the bottom */
         }
 
         .footer-links {
@@ -244,13 +281,49 @@
             background: linear-gradient(45deg, #C8ACD6, #433D8B); /* Light Lavender to Medium Purple */
             transform: scale(1.1);
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .image-container {
+                flex-direction: column;
+            }
+
+            .image-container a {
+                width: 100%;
+            }
+
+            .container-page5, .container-page6 {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery a {
+                width: calc(50% - 20px); /* 2 columns with gap */
+            }
+
+            .footer {
+                position: sticky;
+                bottom: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery a {
+                width: 100%; /* 1 column on very small screens */
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="index.html" class="navbar-logo">Celestials.</a>
-        
+        <button class="navbar-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">&#9776;</button>
+        <div class="navbar-links" id="navbarLinks">
+            <a href="index.html">Home</a>
+            <a href="main post/main post all.html">Post</a>
+            <a href="page 3 html/page 3 clientele.html">Our Clients</a>
+            <a href="page 12/page 12.html">About Us</a>
+        </div>
     </nav>
 
     <!-- Sections -->
@@ -271,7 +344,7 @@
     </section>
 
     <!-- Other Sections (Page 5, Page 6, Page 9, Page 10) -->
-     <section id="page5">
+    <section id="page5">
         <div class="container-page5">
             <a href="#airdrop-coming-soon" class="image-box">
                 <img src="img%2051.jpg" alt="Play 2 Airdrop Coming Soon">
@@ -357,7 +430,7 @@
                 <img src="img%20102.jpg" alt="Page 11">
             </a>
             <a href="#airdrop-coming-soon" target="_blank">
-                <img src="img%20103.jpg" alt="Page 11>
+                <img src="img%20103.jpg" alt="Page 11">
             </a>
             <a href="#airdrop-coming-soon" target="_blank">
                 <img src="img%20104.jpg" alt="Page 11">
@@ -376,7 +449,6 @@
             </a>
         </div>
     </section>
-    <!-- ... -->
 
     <!-- Buttons Above Footer -->
     <div class="button-container">
@@ -387,14 +459,13 @@
         <button onclick="showSection('page10')">5</button>
     </div>
 
-  <!-- Footer Section -->
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-links">
             <a href="https://ranjeetweb01.github.io/Celestials.github/">Home</a>
             <a href="https://ranjeetweb01.github.io/Celestials.github/main%20post/main%20post%20all.html">Post</a>
             <a href="https://ranjeetweb01.github.io/Celestials.github/page%203%20html/page%203%20clientele.html">Our Clients</a>
             <a href="https://ranjeetweb01.github.io/Celestials.github/page%2012/page%2012.html">About Us</a>
-            
         </div>
         <p class="footer-text">&copy; 2023 Celestials. All rights reserved.</p>
     </footer>
@@ -408,6 +479,11 @@
 
             // Show the selected section
             document.getElementById(sectionId).classList.add('active');
+        }
+
+        function toggleMenu() {
+            const navbarLinks = document.getElementById('navbarLinks');
+            navbarLinks.classList.toggle('active');
         }
     </script>
 </body>
