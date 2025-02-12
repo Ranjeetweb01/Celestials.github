@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" type="image/x-icon" href="page 1 &2/main logo.ico">
+    <link rel="icon" type="image/x-icon" href="page 1 &2/main logo.ico">
     <title>Posts of celestials</title>
     <style>
         /* General Styles */
@@ -144,7 +144,7 @@
             transform: scale(1.1);
         }
 
-       * Navigation Bar */
+        /* Navigation Bar */
         .navbar {
             position: fixed;
             top: 0;
@@ -217,13 +217,20 @@
     </style>
 </head>
 <body>
-    <div class="navigation">
-        <button onclick="showSection('page4')">Page 4</button>
-        <button onclick="showSection('page5')">Page 5</button>
-        <button onclick="showSection('page6')">Page 6</button>
-        <button onclick="showSection('page9')">Page 9</button>
-    </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">Celestials</a>
+        <button class="navbar-toggle" onclick="toggleNavbar()">&#9776;</button>
+        <div class="navbar-links">
+            <a href="#" onclick="showSection('page4')">Page 4</a>
+            <a href="#" onclick="showSection('page5')">Page 5</a>
+            <a href="#" onclick="showSection('page6')">Page 6</a>
+            <a href="#" onclick="showSection('page9')">Page 9</a>
+            <a href="#" onclick="showSection('about')">About Us</a>
+        </div>
+    </nav>
 
+    <!-- Sections -->
     <section id="page4" class="active">
         <div class="container-page4">
             <div class="image-container">
@@ -307,22 +314,11 @@
                 <img src="/page%25209/img%207.jpg" alt="Page 11">
             </a>
             <a href="/mnt/data/page 11.png" target="_blank">
-                <img src="page%25209/img%2010.jpg"alt="Page 11">
+                <img src="page%25209/img%2010.jpg" alt="Page 11">
             </a>
-           
         </div>
     </section>
 
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+    <section id="about">
+        <h1>About Us</h1>
+        <p>Welcome to Celestials! We are dedicated to providing you with the best content and experiences. Learn more about our mission
